@@ -2,11 +2,18 @@
 > 一个爬取花瓣网素材的爬虫，应[@williamnie](https://github.com/williamnie)之邀编写
 
 ### How to start
-```bash
-git clone https://github.com/owen-carter/spider-huaban.git
-cd spider-huaban
-npm install && npm start
-```
++ 手动方式
+    ```bash
+    git clone https://github.com/owen-carter/spider-huaban.git
+    cd spider-huaban
+    npm install
+    npm start
+    ```
++ 快捷方式
+    ```bash
+    curl -o- https://raw.githubusercontent.com/owen-carter/spider-huaban/master/start.sh | bash
+    ```
+
 
 
 ### About 
