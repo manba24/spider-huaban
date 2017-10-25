@@ -56,6 +56,7 @@ class Spider {
         return new Promise((resolve, reject) => {
             request(reqConfig, (err, res, body) => {
                 if (err) {
+                    logger.error(`curl url err:${err}`);
                     reject(err);
                 }
                 resolve(body);
