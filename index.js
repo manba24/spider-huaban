@@ -73,6 +73,7 @@ class Spider {
         return new Promise((resolve, reject) => {
             request(reqConfig)
                 .on('error', (err) => {
+                    logger.error(`wget file err: ${err}`);
                     reject(err)
                 })
                 .pipe(stream)
@@ -91,6 +92,7 @@ class Spider {
                     .write();
                 resolve(void(0))
             } catch (e) {
+                logger.error(`save image info err: ${err}`);
                 reject(e)
             }
         })
@@ -137,17 +139,9 @@ class Spider {
                 logger.info(`get a image page ${src}`);
                 let imageEntityList = this.parseImage(imagesPage);
                 for (let img of imageEntityList) {
-                    let err;
-                    err = await this.saveImageInfo(img);
-                    if (err) {
-                        logger.error(`save image info err: ${err}`);
-                    }
-                    logger.info(`saved a image info(${img.name})`);
-                    err = await this.downImage(img);
-                    if (err) {
-                        logger.error(`down file err: ${err}`);
-                    }
-                    logger.info(`down the file(${img.name})`)
+                    await this.saveImageInfo(img);
+                    await this.downImage(img);
+                    logger.info(`save and down the file(${img.name})`)
                 }
             }
         }
